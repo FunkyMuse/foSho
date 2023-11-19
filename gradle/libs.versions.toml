@@ -1,0 +1,137 @@
+[versions]
+#Jetbrains
+jetbrainsComposeCompiler = "1.5.10"
+kotlin-immutable-collections = "0.3.6"
+kotlin = "1.9.20"
+coroutines = "1.7.3"
+dokka = "1.9.10"
+#KSP
+ksp = "1.9.20-1.0.14"
+square-kotlinpoet-ksp = "1.14.2"
+#Dagger/Hilt
+hilt = "2.48.1"
+hilt-work = "1.1.0"
+hiltNavigationCompose = "1.1.0"
+#AndroidX
+androidx-appCompat = "1.7.0-alpha03"
+androidx-core-ktx = "1.12.0"
+androidx-customView = "1.2.0-alpha02"
+androidx-customViewPooling = "1.0.0"
+androidx-lifecycle = "2.7.0-rc01"
+androidx-navigation = "2.7.5"
+androidx-splashscreen = "1.0.1"
+#Compose
+composeActivity = "1.8.1"
+compose = "1.6.0-beta01"
+composeCompiler = "1.5.4"
+composeMaterial3 = "1.2.0-alpha11"
+accompanist = "0.33.2-alpha"
+#Gradle
+gradlePlugins-agp = "8.1.4"
+gradlePlugins-maven-publish = "maven-publish"
+#build
+app-build-javaVersion = "VERSION_17"
+app-build-compileSDKVersion = "34"
+app-build-targetSDK = "34"
+app-build-minimumSDK = "21"
+app-build-testRunner = "androidx.test.runner.AndroidJUnitRunner"
+app-build-kotlinJVMTarget = "17"
+#versioning
+app-version-groupId = "dev.funkymuse.fosho"
+app-version-appId = "dev.funkymuse.fosho.sample"
+app-version-versionCode = "1"
+app-version-versionName = "0.0.1"
+
+
+[libraries]
+#AndroidX
+androidx-customView = { module = "androidx.customview:customview", version.ref = "androidx-customView" }
+androidx-customViewPooling = { module = "androidx.customview:customview-poolingcontainer", version.ref = "androidx-customViewPooling" }
+androidx-appCompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appCompat" }
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-core-ktx" }
+androidx-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "androidx-splashscreen" }
+androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewModel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-service = { module = "androidx.lifecycle:lifecycle-service", version.ref = "androidx-lifecycle" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
+#Coroutines
+coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+#Compose
+compose-activity = { module = "androidx.activity:activity-compose", version.ref = "composeActivity" }
+compose-compiler = { module = "androidx.compose.compiler:compiler", version.ref = "composeCompiler" }
+compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
+compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "composeMaterial3" }
+compose-animation = { module = "androidx.compose.animation:animation", version.ref = "compose" }
+compose-util = { module = "androidx.compose.ui:ui-util", version.ref = "compose" }
+compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
+compose-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "compose" }
+compose-uiTooling-debug = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+compose-uiTooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
+#Immutable collections
+kotlin-immutable-collections = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlin-immutable-collections" }
+#ksp
+ksp-symbol-processing-api = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
+#Squareup
+squareup-kotlinpoet = { module = "com.squareup:kotlinpoet-ksp", version.ref = "square-kotlinpoet-ksp" }
+# Dependencies of the included build-logic
+android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "gradlePlugins-agp" }
+kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+#Hilt
+hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+hilt-work = { module = "androidx.hilt:hilt-work", version.ref = "hilt-work" }
+hilt-hiltNavigationCompose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+hilt-work-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hilt-work" }
+#Accompanist
+accompanist-navigationMaterial = { module = "com.google.accompanist:accompanist-navigation-material", version.ref = "accompanist" }
+[bundles]
+compose = [
+    "compose-activity",
+    "compose-animation",
+    "compose-compiler",
+    "compose-foundation",
+    "compose-runtime",
+    "compose-ui",
+    "compose-util",
+    "compose-uiTooling-preview",
+]
+
+compose-preview = [
+    "androidx-customView",
+    "androidx-customViewPooling",
+    "compose-uiTooling-debug",
+]
+lifecycle = [
+    "androidx-lifecycle-compose",
+    "androidx-lifecycle-runtime",
+    "androidx-lifecycle-service",
+    "androidx-lifecycle-viewModel",
+    "androidx-lifecycle-viewModel-compose",
+]
+hilt = [
+    "hilt",
+    "hilt-hiltNavigationCompose",
+    "hilt-work",
+]
+hilt-ksp = [
+    "hilt-compiler",
+]
+[plugins]
+android = { id = "com.android.application", version.ref = "gradlePlugins-agp" }
+library = { id = "com.android.library", version.ref = "gradlePlugins-agp" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "jetbrainsComposeCompiler" }
+kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+java-library = { id = "java-library" }
+convention-compose-app = { id = "convention.android.compose.app" }
+convention-compose-library = { id = "convention.android.compose.library" }
+convention-hilt = { id = "convention.android.hilt" }
+convention-app = { id = "convention.android.app" }
+convention-library = { id = "convention.android.library" }
+convention-kotlin-library = { id = "convention.android.kotlin.library" }
