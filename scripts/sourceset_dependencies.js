@@ -1,0 +1,1 @@
+sourceset_dependencies = '{":navigator-codegen:dokkaHtmlPartial/main":[],":navigator-android:dokkaHtmlPartial/debug":[],":navigator-android:dokkaHtmlPartial/main":[],":navigator-android:dokkaHtmlPartial/release":[]}'
