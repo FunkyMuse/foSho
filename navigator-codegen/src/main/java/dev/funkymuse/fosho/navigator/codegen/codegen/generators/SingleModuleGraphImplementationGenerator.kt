@@ -1,7 +1,6 @@
 package dev.funkymuse.fosho.navigator.codegen.codegen.generators
 
 import com.google.devtools.ksp.symbol.KSClassDeclaration
-import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
@@ -13,7 +12,6 @@ import com.squareup.kotlinpoet.asClassName
 import com.squareup.kotlinpoet.buildCodeBlock
 import com.squareup.kotlinpoet.ksp.toClassName
 import dev.funkymuse.fosho.navigator.codegen.Constants
-import dev.funkymuse.fosho.navigator.codegen.annotation.AggregatorGraph
 import dev.funkymuse.fosho.navigator.codegen.codegen.generatedFromDocs
 import dev.funkymuse.fosho.navigator.codegen.graphClassName
 

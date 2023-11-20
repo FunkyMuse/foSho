@@ -1,17 +1,5 @@
 package dev.funkymuse.fosho.navigator.codegen.visitors.multi
 
-import dev.funkymuse.fosho.navigator.codegen.ClassNames.Android.ANDROIDX_NAVIGATION
-import dev.funkymuse.fosho.navigator.codegen.ClassNames.CodegenAndroid.LOCAL_PATH
-import dev.funkymuse.fosho.navigator.codegen.ClassNames.Compose.ANDROIDX_COMPOSE_ANIMATION
-import dev.funkymuse.fosho.navigator.codegen.ClassNames.Compose.animatedContentScope
-import dev.funkymuse.fosho.navigator.codegen.ClassNames.Compose.columnScope
-import dev.funkymuse.fosho.navigator.codegen.ClassNames.Compose.composable
-import dev.funkymuse.fosho.navigator.codegen.Constants
-import dev.funkymuse.fosho.navigator.codegen.annotation.AggregatorContent
-import dev.funkymuse.fosho.navigator.codegen.annotation.Content
-import dev.funkymuse.fosho.navigator.codegen.classMustBeInternalVisibility
-import dev.funkymuse.fosho.navigator.codegen.getAnnotation
-import dev.funkymuse.fosho.navigator.codegen.ksClassDeclaration
 import com.google.devtools.ksp.containingFile
 import com.google.devtools.ksp.getAllSuperTypes
 import com.google.devtools.ksp.getClassDeclarationByName
@@ -35,9 +23,21 @@ import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.buildCodeBlock
 import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.writeTo
+import dev.funkymuse.fosho.navigator.codegen.ClassNames.Android.ANDROIDX_NAVIGATION
+import dev.funkymuse.fosho.navigator.codegen.ClassNames.CodegenAndroid.LOCAL_PATH
+import dev.funkymuse.fosho.navigator.codegen.ClassNames.Compose.ANDROIDX_COMPOSE_ANIMATION
+import dev.funkymuse.fosho.navigator.codegen.ClassNames.Compose.animatedContentScope
+import dev.funkymuse.fosho.navigator.codegen.ClassNames.Compose.columnScope
+import dev.funkymuse.fosho.navigator.codegen.ClassNames.Compose.composable
+import dev.funkymuse.fosho.navigator.codegen.Constants
+import dev.funkymuse.fosho.navigator.codegen.annotation.AggregatorContent
+import dev.funkymuse.fosho.navigator.codegen.annotation.Content
+import dev.funkymuse.fosho.navigator.codegen.classMustBeInternalVisibility
 import dev.funkymuse.fosho.navigator.codegen.contract.BottomSheet
 import dev.funkymuse.fosho.navigator.codegen.contract.DestinationContract
 import dev.funkymuse.fosho.navigator.codegen.contract.Screen
+import dev.funkymuse.fosho.navigator.codegen.getAnnotation
+import dev.funkymuse.fosho.navigator.codegen.ksClassDeclaration
 
 internal class MultiModuleContentVisitor(
     private val logger: KSPLogger,

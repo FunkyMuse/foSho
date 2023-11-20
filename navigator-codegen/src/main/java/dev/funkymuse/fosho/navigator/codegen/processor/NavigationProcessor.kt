@@ -1,18 +1,5 @@
 package dev.funkymuse.fosho.navigator.codegen.processor
 
-import dev.funkymuse.fosho.navigator.codegen.Constants
-import dev.funkymuse.fosho.navigator.codegen.codegen.generators.MultiModuleGraphImplementationGenerator
-import dev.funkymuse.fosho.navigator.codegen.codegen.graphFactoryGeneratorStream
-import dev.funkymuse.fosho.navigator.codegen.codegen.plusAssign
-import dev.funkymuse.fosho.navigator.codegen.contract.Dialog
-import dev.funkymuse.fosho.navigator.codegen.findArgumentValue
-import dev.funkymuse.fosho.navigator.codegen.getArgumentValueByName
-import dev.funkymuse.fosho.navigator.codegen.graphClassName
-import dev.funkymuse.fosho.navigator.codegen.ksClassDeclaration
-import dev.funkymuse.fosho.navigator.codegen.toClassNameInternalWithAddition
-import dev.funkymuse.fosho.navigator.codegen.visitors.multi.MultiModuleContentVisitor
-import dev.funkymuse.fosho.navigator.codegen.visitors.multi.MultiModuleGraphVisitor
-import dev.funkymuse.fosho.navigator.codegen.visitors.multi.MultiModuleNavigationVisitor
 import com.google.devtools.ksp.KspExperimental
 import com.google.devtools.ksp.getAllSuperTypes
 import com.google.devtools.ksp.getClassDeclarationByName
@@ -33,6 +20,7 @@ import com.squareup.kotlinpoet.ksp.writeTo
 import dev.funkymuse.fosho.navigator.codegen.ClassNames.Codegen.localClassNameFor
 import dev.funkymuse.fosho.navigator.codegen.ClassNames.CodegenAndroid.LOCAL_PATH
 import dev.funkymuse.fosho.navigator.codegen.ClassNames.KotlinXImmutable.toImmutableList
+import dev.funkymuse.fosho.navigator.codegen.Constants
 import dev.funkymuse.fosho.navigator.codegen.annotation.AggregatorContent
 import dev.funkymuse.fosho.navigator.codegen.annotation.AggregatorGraph
 import dev.funkymuse.fosho.navigator.codegen.annotation.Content
@@ -40,8 +28,20 @@ import dev.funkymuse.fosho.navigator.codegen.annotation.Destination
 import dev.funkymuse.fosho.navigator.codegen.annotation.Graph
 import dev.funkymuse.fosho.navigator.codegen.classMustBeInternalVisibility
 import dev.funkymuse.fosho.navigator.codegen.codegen.addGraphsVariable
+import dev.funkymuse.fosho.navigator.codegen.codegen.generators.MultiModuleGraphImplementationGenerator
+import dev.funkymuse.fosho.navigator.codegen.codegen.graphFactoryGeneratorStream
+import dev.funkymuse.fosho.navigator.codegen.codegen.plusAssign
 import dev.funkymuse.fosho.navigator.codegen.contract.BottomSheet
+import dev.funkymuse.fosho.navigator.codegen.contract.Dialog
 import dev.funkymuse.fosho.navigator.codegen.contract.Screen
+import dev.funkymuse.fosho.navigator.codegen.findArgumentValue
+import dev.funkymuse.fosho.navigator.codegen.getArgumentValueByName
+import dev.funkymuse.fosho.navigator.codegen.graphClassName
+import dev.funkymuse.fosho.navigator.codegen.ksClassDeclaration
+import dev.funkymuse.fosho.navigator.codegen.toClassNameInternalWithAddition
+import dev.funkymuse.fosho.navigator.codegen.visitors.multi.MultiModuleContentVisitor
+import dev.funkymuse.fosho.navigator.codegen.visitors.multi.MultiModuleGraphVisitor
+import dev.funkymuse.fosho.navigator.codegen.visitors.multi.MultiModuleNavigationVisitor
 import dev.funkymuse.fosho.navigator.codegen.visitors.single.SingleModuleGraphVisitor
 import dev.funkymuse.fosho.navigator.codegen.visitors.single.SingleModuleNavigationVisitor
 

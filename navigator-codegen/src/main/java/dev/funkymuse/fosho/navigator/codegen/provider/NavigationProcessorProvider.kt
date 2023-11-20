@@ -1,9 +1,10 @@
 package dev.funkymuse.fosho.navigator.codegen.provider
 
-import dev.funkymuse.fosho.navigator.codegen.processor.NavigationProcessor
 import com.google.devtools.ksp.processing.SymbolProcessor
 import com.google.devtools.ksp.processing.SymbolProcessorEnvironment
 import com.google.devtools.ksp.processing.SymbolProcessorProvider
+import dev.funkymuse.fosho.navigator.codegen.Constants
+import dev.funkymuse.fosho.navigator.codegen.processor.NavigationProcessor
 
 class NavigationProcessorProvider : SymbolProcessorProvider {
 
@@ -11,6 +12,7 @@ class NavigationProcessorProvider : SymbolProcessorProvider {
         NavigationProcessor(
             logger = environment.logger,
             codeGenerator = environment.codeGenerator,
-            isSingleModule = environment.options["foShoSingleModule"]?.toBooleanStrict() ?: false
+            isSingleModule = !(environment.options["${Constants.foSho}.${Constants.multiModule}"]?.toBooleanStrict()
+                ?: true)
         )
 }

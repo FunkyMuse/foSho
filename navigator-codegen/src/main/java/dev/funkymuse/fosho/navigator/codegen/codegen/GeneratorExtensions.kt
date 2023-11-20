@@ -1,5 +1,19 @@
 package dev.funkymuse.fosho.navigator.codegen.codegen
 
+import com.google.devtools.ksp.symbol.KSClassDeclaration
+import com.google.devtools.ksp.symbol.KSType
+import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.FunSpec
+import com.squareup.kotlinpoet.KModifier
+import com.squareup.kotlinpoet.ParameterSpec
+import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
+import com.squareup.kotlinpoet.PropertySpec
+import com.squareup.kotlinpoet.TypeName
+import com.squareup.kotlinpoet.TypeSpec
+import com.squareup.kotlinpoet.asClassName
+import com.squareup.kotlinpoet.asTypeName
+import com.squareup.kotlinpoet.buildCodeBlock
+import com.squareup.kotlinpoet.ksp.toClassName
 import dev.funkymuse.fosho.navigator.codegen.ClassNames
 import dev.funkymuse.fosho.navigator.codegen.ClassNames.Android.ANDROIDX_NAV_HOST_CONTROLLER
 import dev.funkymuse.fosho.navigator.codegen.ClassNames.Android.ANDROIDX_SAVED_STATE_HANDLE
@@ -23,20 +37,6 @@ import dev.funkymuse.fosho.navigator.codegen.deepLinksTemplate
 import dev.funkymuse.fosho.navigator.codegen.findArgumentValue
 import dev.funkymuse.fosho.navigator.codegen.getAnnotation
 import dev.funkymuse.fosho.navigator.codegen.ksClassDeclaration
-import com.google.devtools.ksp.symbol.KSClassDeclaration
-import com.google.devtools.ksp.symbol.KSType
-import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.ParameterSpec
-import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
-import com.squareup.kotlinpoet.PropertySpec
-import com.squareup.kotlinpoet.TypeName
-import com.squareup.kotlinpoet.TypeSpec
-import com.squareup.kotlinpoet.asClassName
-import com.squareup.kotlinpoet.asTypeName
-import com.squareup.kotlinpoet.buildCodeBlock
-import com.squareup.kotlinpoet.ksp.toClassName
 import java.io.File
 import java.util.Locale
 

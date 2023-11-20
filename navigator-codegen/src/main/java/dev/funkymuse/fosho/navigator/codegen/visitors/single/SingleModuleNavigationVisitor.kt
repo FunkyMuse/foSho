@@ -1,18 +1,5 @@
 package dev.funkymuse.fosho.navigator.codegen.visitors.single
 
-import dev.funkymuse.fosho.navigator.codegen.ClassNames
-import dev.funkymuse.fosho.navigator.codegen.ClassNames.CodegenAndroid.LOCAL_PATH
-import dev.funkymuse.fosho.navigator.codegen.ClassNames.WrappedNavigation.COMPOSED_NAVIGATION_PACKAGE
-import dev.funkymuse.fosho.navigator.codegen.Constants
-import dev.funkymuse.fosho.navigator.codegen.UIType
-import dev.funkymuse.fosho.navigator.codegen.annotation.Destination
-import dev.funkymuse.fosho.navigator.codegen.argument.DefaultArgumentValue
-import dev.funkymuse.fosho.navigator.codegen.classMustBeInternalVisibility
-import dev.funkymuse.fosho.navigator.codegen.codegen.generators.AndroidDestinationImplementationGenerator
-import dev.funkymuse.fosho.navigator.codegen.contract.Dialog
-import dev.funkymuse.fosho.navigator.codegen.findArgumentValue
-import dev.funkymuse.fosho.navigator.codegen.getAnnotation
-import dev.funkymuse.fosho.navigator.codegen.ksClassDeclaration
 import com.google.devtools.ksp.containingFile
 import com.google.devtools.ksp.getAllSuperTypes
 import com.google.devtools.ksp.getClassDeclarationByName
@@ -27,9 +14,21 @@ import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.writeTo
-import dev.funkymuse.fosho.navigator.codegen.annotation.Content
+import dev.funkymuse.fosho.navigator.codegen.ClassNames
+import dev.funkymuse.fosho.navigator.codegen.ClassNames.CodegenAndroid.LOCAL_PATH
+import dev.funkymuse.fosho.navigator.codegen.ClassNames.WrappedNavigation.COMPOSED_NAVIGATION_PACKAGE
+import dev.funkymuse.fosho.navigator.codegen.Constants
+import dev.funkymuse.fosho.navigator.codegen.UIType
+import dev.funkymuse.fosho.navigator.codegen.annotation.Destination
+import dev.funkymuse.fosho.navigator.codegen.argument.DefaultArgumentValue
+import dev.funkymuse.fosho.navigator.codegen.classMustBeInternalVisibility
+import dev.funkymuse.fosho.navigator.codegen.codegen.generators.AndroidDestinationImplementationGenerator
 import dev.funkymuse.fosho.navigator.codegen.contract.BottomSheet
+import dev.funkymuse.fosho.navigator.codegen.contract.Dialog
 import dev.funkymuse.fosho.navigator.codegen.contract.Screen
+import dev.funkymuse.fosho.navigator.codegen.findArgumentValue
+import dev.funkymuse.fosho.navigator.codegen.getAnnotation
+import dev.funkymuse.fosho.navigator.codegen.ksClassDeclaration
 
 
 internal class SingleModuleNavigationVisitor(

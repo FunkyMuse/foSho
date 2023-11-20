@@ -1,13 +1,5 @@
 package dev.funkymuse.fosho.navigator.codegen.visitors.single
 
-import dev.funkymuse.fosho.navigator.codegen.ClassNames.CodegenAndroid.LOCAL_PATH
-import dev.funkymuse.fosho.navigator.codegen.Constants
-import dev.funkymuse.fosho.navigator.codegen.annotation.Graph
-import dev.funkymuse.fosho.navigator.codegen.classMustBeInternalVisibility
-import dev.funkymuse.fosho.navigator.codegen.contract.Dialog
-import dev.funkymuse.fosho.navigator.codegen.findArgumentValue
-import dev.funkymuse.fosho.navigator.codegen.getAnnotation
-import dev.funkymuse.fosho.navigator.codegen.ksClassDeclaration
 import com.google.devtools.ksp.containingFile
 import com.google.devtools.ksp.getAllSuperTypes
 import com.google.devtools.ksp.getClassDeclarationByName
@@ -21,10 +13,18 @@ import com.google.devtools.ksp.symbol.KSType
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.ksp.writeTo
+import dev.funkymuse.fosho.navigator.codegen.ClassNames.CodegenAndroid.LOCAL_PATH
+import dev.funkymuse.fosho.navigator.codegen.Constants
+import dev.funkymuse.fosho.navigator.codegen.annotation.Graph
+import dev.funkymuse.fosho.navigator.codegen.classMustBeInternalVisibility
 import dev.funkymuse.fosho.navigator.codegen.codegen.generators.SingleModuleGraphImplementationGenerator
 import dev.funkymuse.fosho.navigator.codegen.contract.BottomSheet
+import dev.funkymuse.fosho.navigator.codegen.contract.Dialog
 import dev.funkymuse.fosho.navigator.codegen.contract.Screen
+import dev.funkymuse.fosho.navigator.codegen.findArgumentValue
+import dev.funkymuse.fosho.navigator.codegen.getAnnotation
 import dev.funkymuse.fosho.navigator.codegen.graphClassName
+import dev.funkymuse.fosho.navigator.codegen.ksClassDeclaration
 
 internal class SingleModuleGraphVisitor(
     private val logger: KSPLogger,

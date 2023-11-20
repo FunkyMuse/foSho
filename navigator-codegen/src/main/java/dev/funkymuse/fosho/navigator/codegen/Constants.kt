@@ -1,7 +1,8 @@
 package dev.funkymuse.fosho.navigator.codegen
 
 internal object Constants {
-
+    const val foSho = "foSho"
+    const val multiModule = "multiModule"
     const val Graph = "Graph"
     const val NavigationGraph = "NavigationGraph"
     const val Navigation = "Navigation"

@@ -1,13 +1,13 @@
 package dev.funkymuse.fosho.navigator.codegen.codegen
 
 
+import com.google.devtools.ksp.processing.CodeGenerator
+import com.google.devtools.ksp.processing.Dependencies
 import dev.funkymuse.fosho.navigator.codegen.ClassNames.CodegenAndroid.LOCAL_PATH
 import dev.funkymuse.fosho.navigator.codegen.ClassNames.KotlinXImmutable.IMMUTABLE_PACKAGE
 import dev.funkymuse.fosho.navigator.codegen.ClassNames.KotlinXImmutable.ImmutableList
 import dev.funkymuse.fosho.navigator.codegen.ClassNames.KotlinXImmutable.toImmutableList
 import dev.funkymuse.fosho.navigator.codegen.Constants
-import com.google.devtools.ksp.processing.CodeGenerator
-import com.google.devtools.ksp.processing.Dependencies
 import java.io.OutputStream
 
 internal fun graphFactoryGeneratorStream(

@@ -10,7 +10,7 @@ internal val KSType.packageName: String get() = declaration.packageName.asString
 internal fun KSClassDeclaration.getAnnotation(
     annotationKClass: KClass<*>
 ): Sequence<KSAnnotation> =
-     annotations.findAnnotation(annotationKClass)
+    annotations.findAnnotation(annotationKClass)
 
 
 internal fun Sequence<KSAnnotation>.findAnnotation(annotationKClass: KClass<*>) = filter {
@@ -25,6 +25,6 @@ internal inline fun <reified T> KSAnnotation.findArgumentValue(name: String): T 
 
 fun KSType.ksClassDeclaration() =
     (declaration as KSClassDeclaration)
-internal inline fun <reified T> Sequence<KSAnnotation>.getArgumentValueByName(name: String) = first().findArgumentValue<T>(name)
 
-
+internal inline fun <reified T> Sequence<KSAnnotation>.getArgumentValueByName(name: String) =
+    first().findArgumentValue<T>(name)

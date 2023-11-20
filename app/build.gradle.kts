@@ -26,7 +26,7 @@ android {
 }
 
 ksp {
-    arg("foShoSingleModule", true.toString())
+    arg("foSho.multiModule", "true")
 }
 
 dependencies {
