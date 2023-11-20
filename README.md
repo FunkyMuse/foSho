@@ -28,7 +28,7 @@ A KSP library that helps you generate type safe code with minimal effort and pro
 - Global navigation
 - Multi and single module support
 
-Everything you can do with the Official Jetpack Compose Navigation
+Everything you can do with the Official Jetpack Compose Navigation but in a type safe way.
 
 ### Setup
 The library is available through [JitPack](https://jitpack.io/).
