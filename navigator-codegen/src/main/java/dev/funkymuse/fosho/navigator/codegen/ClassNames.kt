@@ -11,6 +11,10 @@ internal object ClassNames {
         const val toImmutableList = "toImmutableList"
     }
 
+    object Inject {
+        val javaInject = ClassName("javax.inject", "Inject")
+    }
+
     object Android {
         val Uri = ClassName("android.net", "Uri")
         const val ANDROIDX_NAVIGATION = "androidx.navigation"

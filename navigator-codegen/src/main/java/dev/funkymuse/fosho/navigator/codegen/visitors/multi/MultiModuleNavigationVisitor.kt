@@ -38,6 +38,7 @@ internal class MultiModuleNavigationVisitor(
     private val screenNavigationDestinationClassName: ClassName,
     private val dialogNavigationDestinationClassName: ClassName,
     private val bottomSheetNavigationDestinationClassName: ClassName,
+    private val injectViewModelArguments : Boolean
 ) : KSVisitorVoid() {
 
     override fun visitClassDeclaration(
@@ -96,7 +97,8 @@ internal class MultiModuleNavigationVisitor(
                     screen -> UIType.SCREEN
                     bottomSheet -> UIType.BOTTOM_SHEET
                     else-> throw IllegalArgumentException("$classDeclaration must implement either ${Screen::class.java.simpleName}, ${Dialog::class.java.simpleName} or ${BottomSheet::class.java.simpleName} ")
-                }
+                },
+                injectViewModelArguments = injectViewModelArguments
             ).build()
         )
 

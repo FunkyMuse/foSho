@@ -33,14 +33,17 @@ internal class AndroidDestinationImplementationGenerator(
         file: FileSpec.Builder,
         dialogTemplate: KSClassDeclaration?,
         defaultNavArgumentValue: KSClassDeclaration?,
-        uiType: UIType
+        uiType: UIType,
+        injectViewModelArguments : Boolean
+
     ): TypeSpec.Builder {
         val openAndArguments = androidGeneratedOpenFunction(
             screenClassName = screenClass.toString(),
             declaration = declaration,
             generateViewModelArguments = generateViewModelArguments,
             generateScreenEntryArguments = generateScreenEntryArguments,
-            defaultNavArgumentValue = defaultNavArgumentValue
+            defaultNavArgumentValue = defaultNavArgumentValue,
+            injectViewModelArguments = injectViewModelArguments
         )
 
         return TypeSpec

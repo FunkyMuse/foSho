@@ -38,6 +38,7 @@ internal class SingleModuleNavigationVisitor(
     private val screenNavigationDestinationClassName: ClassName,
     private val dialogNavigationDestinationClassName: ClassName,
     private val bottomSheetNavigationDestinationClassName: ClassName,
+    private val injectViewModelArguments: Boolean
 ) : KSVisitorVoid() {
 
     override fun visitClassDeclaration(
@@ -45,7 +46,10 @@ internal class SingleModuleNavigationVisitor(
         data: Unit
     ) {
         if (classDeclaration.classKind != ClassKind.OBJECT) {
-            logger.error("Only object can be annotated with @${Destination::class.java.simpleName}", classDeclaration)
+            logger.error(
+                "Only object can be annotated with @${Destination::class.java.simpleName}",
+                classDeclaration
+            )
             return
         }
         classDeclaration.classMustBeInternalVisibility(logger)
@@ -69,7 +73,10 @@ internal class SingleModuleNavigationVisitor(
         val generateScreenEntryArguments: Boolean =
             destination.findArgumentValue(Constants.generateScreenEntryArguments)
 
-        file.addImport(classDeclaration.packageName.asString(), classDeclaration.simpleName.asString())
+        file.addImport(
+            classDeclaration.packageName.asString(),
+            classDeclaration.simpleName.asString()
+        )
         file.addImport(COMPOSED_NAVIGATION_PACKAGE, ClassNames.WrappedNavigation.currentEntry)
         file.addImport(COMPOSED_NAVIGATION_PACKAGE, ClassNames.WrappedNavigation.getResult)
         file.addImport(ClassNames.Codegen.ARGUMENTABLE_PACKAGE, Constants.ArgumentContract)
@@ -95,8 +102,9 @@ internal class SingleModuleNavigationVisitor(
                     dialog -> UIType.DIALOG
                     screen -> UIType.SCREEN
                     bottomSheet -> UIType.BOTTOM_SHEET
-                    else-> throw IllegalArgumentException("$classDeclaration must implement either ${Screen::class.java.simpleName}, ${Dialog::class.java.simpleName} or ${BottomSheet::class.java.simpleName} ")
-                }
+                    else -> throw IllegalArgumentException("$classDeclaration must implement either ${Screen::class.java.simpleName}, ${Dialog::class.java.simpleName} or ${BottomSheet::class.java.simpleName} ")
+                },
+                injectViewModelArguments = injectViewModelArguments
             ).build()
         )
 

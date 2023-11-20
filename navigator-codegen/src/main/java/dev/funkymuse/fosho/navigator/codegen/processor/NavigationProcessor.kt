@@ -49,6 +49,7 @@ internal class NavigationProcessor(
     private val logger: KSPLogger,
     private val codeGenerator: CodeGenerator,
     private val isSingleModule: Boolean,
+    private val injectViewModelArguments: Boolean
 ) : SymbolProcessor {
     private val navigationDestinationClassName = localClassNameFor(Constants.NavigationDestination)
     private val androidDialogType = localClassNameFor(Constants.AndroidDialog)
@@ -265,7 +266,7 @@ internal class NavigationProcessor(
                     contentDeclaration
                 )
                 graphFactory += "\t\t${graphClassName(ksClassDeclaration)},\n"
-                if (index == graphSymbol.lastIndex){
+                if (index == graphSymbol.lastIndex) {
                     graphFactory += "\t).$toImmutableList()"
                 }
             }
@@ -344,6 +345,7 @@ internal class NavigationProcessor(
             screenNavigationDestinationClassName = androidScreenType,
             dialogNavigationDestinationClassName = androidDialogType,
             bottomSheetNavigationDestinationClassName = androidBottomSheetType,
+            injectViewModelArguments = injectViewModelArguments
         )
 
         navRequestSymbol.forEach { ksClassDeclaration ->
@@ -367,6 +369,7 @@ internal class NavigationProcessor(
             screenNavigationDestinationClassName = androidScreenType,
             dialogNavigationDestinationClassName = androidDialogType,
             bottomSheetNavigationDestinationClassName = androidBottomSheetType,
+            injectViewModelArguments = injectViewModelArguments
         )
 
         navRequestSymbol.forEach { ksClassDeclaration ->

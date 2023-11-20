@@ -24,6 +24,7 @@ import dev.funkymuse.fosho.navigator.codegen.ClassNames.Compose.COMPOSE_REMEMBER
 import dev.funkymuse.fosho.navigator.codegen.ClassNames.Compose.animatedContentScope
 import dev.funkymuse.fosho.navigator.codegen.ClassNames.Compose.columnScope
 import dev.funkymuse.fosho.navigator.codegen.ClassNames.Compose.composable
+import dev.funkymuse.fosho.navigator.codegen.ClassNames.Inject.javaInject
 import dev.funkymuse.fosho.navigator.codegen.ClassNames.WrappedNavigation.COMPOSED_NAV_ENTRY
 import dev.funkymuse.fosho.navigator.codegen.ClassNames.WrappedNavigation.COMPOSED_VIEW_MODEL
 import dev.funkymuse.fosho.navigator.codegen.ClassNames.WrappedNavigation.NavigationEntryArguments
@@ -126,7 +127,8 @@ internal fun androidGeneratedOpenFunction(
     declaration: KSClassDeclaration,
     generateViewModelArguments: Boolean,
     generateScreenEntryArguments: Boolean,
-    defaultNavArgumentValue: KSClassDeclaration?
+    defaultNavArgumentValue: KSClassDeclaration?,
+    injectViewModelArguments : Boolean
 ): AndroidGeneratedOpenFunction {
     val screenClass = screenClassName.substringAfterLast(".")
     val openClassFunSpec = FunSpec.builder("open$screenClass")
@@ -160,7 +162,10 @@ internal fun androidGeneratedOpenFunction(
             screenClass = screenClass, classSuffix = Constants.ViewModelArguments,
             superInterface = ViewModelNavigationArguments,
             defaultConstructorPropertyName = Constants.savedStateHandle,
-            defaultConstructorPropertyType = ANDROIDX_SAVED_STATE_HANDLE
+            defaultConstructorPropertyType = ANDROIDX_SAVED_STATE_HANDLE,
+            constructorBuilder = if (injectViewModelArguments){
+                { addAnnotation(javaInject) }
+            } else null
         )
     }
 
@@ -573,6 +578,7 @@ private fun argumentTypeSpec(
     superInterface: ClassName,
     defaultConstructorPropertyName: String,
     defaultConstructorPropertyType: ClassName,
+    constructorBuilder: (FunSpec.Builder.() -> Unit)? = null
 ) = TypeSpec.classBuilder(
     ClassName(
         declaration.packageName.asString(),
@@ -589,6 +595,9 @@ private fun argumentTypeSpec(
                     type = defaultConstructorPropertyType
                 ).build()
             )
+            .apply {
+                constructorBuilder?.invoke(this)
+            }
             .build()
     ).addProperty(
         PropertySpec.builder(

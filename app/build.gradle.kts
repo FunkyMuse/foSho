@@ -25,6 +25,10 @@ android {
     }
 }
 
+ksp {
+    arg("foSho.injectViewModelArguments", "true")
+}
+
 dependencies {
 
     //navigation
