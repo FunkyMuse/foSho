@@ -33,8 +33,8 @@ import com.google.accompanist.navigation.material.rememberBottomSheetNavigator
 import dagger.hilt.android.AndroidEntryPoint
 import dev.funkymuse.fosho.navigator.android.GraphFactory
 import dev.funkymuse.fosho.navigator.android.LocalNavHostController
+import dev.funkymuse.fosho.navigator.android.NavHostControllerEvents
 import dev.funkymuse.fosho.navigator.android.addGraphs
-import dev.funkymuse.fosho.navigator.android.navigator.NavHostControllerEvents
 import dev.funkymuse.fosho.navigator.android.navigator.NavigatorDirections
 import dev.funkymuse.fosho.navigator.android.navigator.impl.Navigator
 import dev.funkymuse.fosho.navigator.android.wrapped.hideBottomNavigation

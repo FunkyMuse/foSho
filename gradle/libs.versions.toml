@@ -1,6 +1,5 @@
 [versions]
 #Jetbrains
-jetbrainsComposeCompiler = "1.5.10"
 kotlin-immutable-collections = "0.3.6"
 kotlin = "1.9.20"
 coroutines = "1.7.3"
@@ -43,7 +42,7 @@ app-build-kotlinJVMTarget = "17"
 app-version-groupId = "dev.funkymuse.fosho"
 app-version-appId = "dev.funkymuse.fosho.sample"
 app-version-versionCode = "1"
-app-version-versionName = "0.0.4"
+app-version-versionName = "0.0.5"
 
 
 [libraries]
@@ -140,7 +139,6 @@ hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
-jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "jetbrainsComposeCompiler" }
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 java-library = { id = "java-library" }
 convention-compose-app = { id = "convention.android.compose.app" }

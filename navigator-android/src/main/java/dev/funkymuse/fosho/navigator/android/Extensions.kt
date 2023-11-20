@@ -12,6 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.util.Consumer
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -146,6 +147,21 @@ fun OnNewIntentListener(key: Any, onIntent: (intent: Intent) -> Unit) {
     val activity = (context.getActivity() as ComponentActivity)
     DisposableEffect(key) {
         val listener = Consumer(currentOnIntent)
+        activity.addOnNewIntentListener(listener)
+        onDispose { activity.removeOnNewIntentListener(listener) }
+    }
+}
+
+@Composable
+fun ListenForIntentRedirections(
+    navController: NavHostController,
+    onListenForRedirections: (Intent?, NavBackStackEntry?) -> Unit
+) {
+    val activity = (LocalContext.current.getActivity() as ComponentActivity)
+    DisposableEffect(navController) {
+        val listener = Consumer<Intent> {
+            onListenForRedirections(it, navController.currentBackStackEntry)
+        }
         activity.addOnNewIntentListener(listener)
         onDispose { activity.removeOnNewIntentListener(listener) }
     }
