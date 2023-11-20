@@ -84,6 +84,17 @@ ksp {
 }
 ```
 
+<details open>
+  <summary>Single module</summary>
+
+```kotlin
+ksp {
+    arg("foSho.singleModule", "true")
+}
+```
+
+</details>
+
 3. Make magic happen
 
 There are three things you need to write code for and it's pretty natural
@@ -167,13 +178,6 @@ A `Navigator` is there for you to collect the navigation events and also to send
 <details open>
   <summary>Multi module</summary>
 
-//todo
-
-```kotlin
-ksp {
-    arg("foSho.multiModule", "true")
-}
-```
 
 </details>
 

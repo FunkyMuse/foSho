@@ -2,11 +2,10 @@ package dev.funkymuse.fosho.navigator.codegen
 
 internal object Constants {
     const val foSho = "foSho"
-    const val multiModule = "multiModule"
+    const val singleModule = "singleModule"
     const val injectViewModelArguments = "injectViewModelArguments"
     const val Graph = "Graph"
     const val NavigationGraph = "NavigationGraph"
-    const val Navigation = "Navigation"
     const val NavigationDestination = "NavigationDestination"
     const val IllegalArgumentException = "IllegalArgumentException"
     const val AndroidDialog = "AndroidDialog"

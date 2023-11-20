@@ -12,8 +12,7 @@ class NavigationProcessorProvider : SymbolProcessorProvider {
         NavigationProcessor(
             logger = environment.logger,
             codeGenerator = environment.codeGenerator,
-            isSingleModule = !(environment.options["${Constants.foSho}.${Constants.multiModule}"]?.toBooleanStrict()
-                ?: false),
+            isSingleModule = environment.options["${Constants.foSho}.${Constants.singleModule}"]?.toBooleanStrict() ?: false,
             injectViewModelArguments = environment.options["${Constants.foSho}.${Constants.injectViewModelArguments}"]?.toBooleanStrict()
                 ?: false
         )

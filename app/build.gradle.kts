@@ -27,6 +27,7 @@ android {
 
 ksp {
     arg("foSho.injectViewModelArguments", "true")
+    arg("foSho.singleModule", "true")
 }
 
 dependencies {
