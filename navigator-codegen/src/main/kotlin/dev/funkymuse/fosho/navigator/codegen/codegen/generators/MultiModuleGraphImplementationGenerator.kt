@@ -12,6 +12,7 @@ import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.asClassName
 import com.squareup.kotlinpoet.buildCodeBlock
 import com.squareup.kotlinpoet.ksp.toClassName
+import dev.funkymuse.fosho.navigator.codegen.ClassNames
 import dev.funkymuse.fosho.navigator.codegen.Constants
 import dev.funkymuse.fosho.navigator.codegen.annotation.AggregatorGraph
 import dev.funkymuse.fosho.navigator.codegen.codegen.generatedFromDocs
@@ -100,7 +101,7 @@ internal class MultiModuleGraphImplementationGenerator(
         TypeSpec
             .objectBuilder(graphClassName(declaration))
             .addKdoc(generatedFromDocs(declaration))
-            .addSuperinterface(ClassName.bestGuess(declaration.simpleName.asString()))
+            .addSuperinterface(ClassName(ClassNames.CodegenAndroid.LOCAL_PATH, declaration.simpleName.asString()))
             .addProperty(
                 PropertySpec.builder(
                     name = Constants.screens,
