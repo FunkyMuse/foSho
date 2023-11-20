@@ -14,7 +14,7 @@
 A KSP library that helps you generate type safe code with minimal effort and provides out of the box solutions to bundle everything together and scale your app in easy manner.
 
 ### Main features
-- Typesafe navigation arguments (thanks to [compose destinations](https://github.com/raamcosta/compose-destinations))
+- Typesafe navigation arguments (special thanks for parsing the arguments to [compose destinations](https://github.com/raamcosta/compose-destinations))
 - Simple setup with minimal code
 - ViewModel type safe arguments with injection support when using Hilt
 - Screen "level" type safe arguments
