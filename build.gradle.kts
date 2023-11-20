@@ -17,16 +17,14 @@ subprojects {
         apply(plugin = libs.versions.gradlePlugins.maven.publish.get())
         apply(plugin = libs.plugins.dokka.get().pluginId)
 
-        plugins.withType<JavaLibraryPlugin>{
-            afterEvaluate {
-                publishing.publications {
-                    create<MavenPublication>("kotlin") {
-                        groupId = libs.versions.app.version.groupId.get()
-                        artifactId = this@subprojects.name
-                        version = libs.versions.app.version.versionName.get()
-                        afterEvaluate {
-                            from(components["kotlin"])
-                        }
+        plugins.withType<JavaLibraryPlugin> {
+            publishing.publications {
+                create<MavenPublication>("kotlin") {
+                    groupId = libs.versions.app.version.groupId.get()
+                    artifactId = this@subprojects.name
+                    version = libs.versions.app.version.versionName.get()
+                    afterEvaluate {
+                        from(components["kotlin"])
                     }
                 }
             }
