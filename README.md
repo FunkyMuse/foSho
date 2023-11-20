@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center"> 
-   <img height="250" src="https://raw.githubusercontent.com/FunkyMuse/foSho/main/foSho.png"/> 
+   <img src="https://raw.githubusercontent.com/FunkyMuse/foSho/main/foSho.png"/> 
 </p>
 
 
