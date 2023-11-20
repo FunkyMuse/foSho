@@ -88,24 +88,86 @@ ksp {
 
 There are three things you need to write code for and it's pretty natural
 1. Graph
-2. Destination
+2. Destination (Argument, Callback Argument)
 3. Content
 
-- Graph: Starting point is called a `Graph`, each `Graph` has a `startingDestination` and other `destinations`, also a `Graph` can be a `rootGraph` (only one throughout your app).
-
+- `Graph`: Starting point is a `@Graph`, each `Graph` has a `startingDestination` and other `destinations`, also a `Graph` can be a `rootGraph` (only one throughout your app).
+- `Destination`: every destination that's part of `startingDestination` and `destinations` is marked with `@Destination` and you implement one of the three UI types `Screen`, `Dialog` and `BottomSheet` for each one you can additionally control whether to generate view model arguments or nav stack entry arguments, `val generateViewModelArguments: Boolean = false`,
+  `val generateScreenEntryArguments: Boolean = false`, you can annotate a destination with `@Argument` and `@CallbackArgument` in order to control to/from arguments.
+- `Content`: everytime you click build a `Destination` implementation is generated for you, it's your responsibility to implement it and annotate that object with a `@Content`
 In code this will look like this
 
 ```kotlin
+@Graph(
+    startingDestination = Home::class,
+    destinations = [HomeDetails::class],
+    rootGraph = true
+)
+internal object HomeGraph
 
+@Destination
+@Argument(
+    name = "hideBottomNav",
+    argumentType = ArgumentType.BOOLEAN,
+    defaultValue = DefaultBooleanValueFalse::class
+)
+internal object Home : Screen
+
+@Destination(generateViewModelArguments = true, generateScreenEntryArguments = false)
+@Argument(name = "cardId", argumentType = ArgumentType.INT)
+@CallbackArgument(name = "clickedShare", argumentType = ArgumentType.BOOLEAN)
+internal object HomeDetails : Screen {
+    override val deepLinksList: List<DeepLinkContract>
+        get() = listOf(
+            DeepLinkContract(
+                action = Intent.ACTION_VIEW,
+                uriPattern = "custom:url/{cardId}"
+            )
+        )
+}
+
+@Content
+internal object HomeContent : HomeDestination {
+  @Composable
+  override fun AnimatedContentScope.Content() {
+    val argumentsFromHomeDetailsDestination = HomeDetailsCallbackArguments.rememberHomeDetailsCallbackArguments()
+    argumentsFromHomeDetailsDestination.OnSingleBooleanCallbackArgument(
+      key = HomeDetailsCallbackArguments.CLICKED_SHARE,
+      onValue = {
+        if (it == true){
+          //user has clicked share
+        }
+      }
+    )
+    HomeScreen(onClick = {
+      Navigator.navigateSingleTop(HomeDetailsDestination.openHomeDetails(cardId = 42))
+    })
+  }
+}
+
+@Content
+internal object HomeDetailsContent : HomeDetailsDestination {
+  @Composable
+  override fun AnimatedContentScope.Content() {
+
+  }
+}
 ```
 
-<details open>
-  <summary>Single module</summary>
+A `GraphFactory` is generated for you which you can use with an extension function `addGraphs` to have ease of use like 
+```kotlin
+addGraphs(
+  navigationGraphs = GraphFactory.graphs
+)
+```
+you can checkout [this line](https://github.com/FunkyMuse/foSho/blob/365221e73e7aacdefd48b9fe84e9db0bec6c57c6/app/src/main/java/dev/funkymuse/fosho/sample/MainActivity.kt#L123).
 
-</details>
+A `Navigator` is there for you to collect the navigation events and also to send navigation events, for a single module setup, you can check out the [sample](https://github.com/FunkyMuse/foSho/tree/main/app).
 
 <details open>
   <summary>Multi module</summary>
+
+//todo
 
 ```kotlin
 ksp {
