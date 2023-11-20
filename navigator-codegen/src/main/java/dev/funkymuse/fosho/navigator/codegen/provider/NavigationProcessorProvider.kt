@@ -13,6 +13,6 @@ class NavigationProcessorProvider : SymbolProcessorProvider {
             logger = environment.logger,
             codeGenerator = environment.codeGenerator,
             isSingleModule = !(environment.options["${Constants.foSho}.${Constants.multiModule}"]?.toBooleanStrict()
-                ?: true)
+                ?: false)
         )
 }
