@@ -41,24 +41,78 @@ dependencyResolutionManagement {
 ```
 
 2. Add the dependency in the build.gradle
+```toml
+[versions]
+foSho = <version>
+ksp = <version>
 
+[libraries]
+foSho-android = { module = "com.github.FunkyMuse.foSho:navigator-android", version.ref = "foSho" }
+foSho-codegen = { module = "com.github.FunkyMuse.foSho:navigator-codegen", version.ref = "foSho" }
+
+[plugins]
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+```
+
+Inside the project build.gradle make sure to add the [KSP](https://github.com/google/ksp) plugin
+```kotlin
+plugins {
+    ...
+    alias(libs.plugins.ksp).apply(false)
+}
+```
+Inside the `:app` module
+```kotlin
+plugins {
+    ....
+    alias(libs.plugins.ksp)
+}
+```
+
+```kotlin
+dependencies {
+    implementation(libs.foSho.android)
+    ksp(libs.foSho.codegen)
+}
+```
+
+If you intend to use `Hilt/Dagger/Anvil` with `foSho` and want your generated ViewModel arguments injectable,
+inside `:app` module set `foSho.injectViewModelArguments` to "true", default is "false"
+```kotlin
+ksp {
+    arg("foSho.injectViewModelArguments", "true")
+}
+```
+
+3. Make magic happen
+
+There are three things you need to write code for and it's pretty natural
+1. Graph
+2. Destination
+3. Content
+
+- Graph: Starting point is called a `Graph`, each `Graph` has a `startingDestination` and other `destinations`, also a `Graph` can be a `rootGraph` (only one throughout your app).
+
+In code this will look like this
+
+```kotlin
+
+```
 
 <details open>
   <summary>Single module</summary>
 
-```gradle
-implementation ':<version>'
-ksp ':<version>'
-```
 </details>
 
 <details open>
   <summary>Multi module</summary>
 
-```gradle
-implementation ':<version>'
-ksp ':<version>'
+```kotlin
+ksp {
+    arg("foSho.multiModule", "true")
+}
 ```
+
 </details>
 
 #### Important for Kotlin < 1.8.0
