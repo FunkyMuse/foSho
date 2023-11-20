@@ -25,10 +25,6 @@ android {
     }
 }
 
-ksp {
-    arg("foSho.multiModule", "true")
-}
-
 dependencies {
 
     //navigation
