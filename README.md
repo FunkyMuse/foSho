@@ -1,7 +1,3 @@
-<h1 align="center"> 
-   <a href="https://funkymuse.dev/foSho/">foSho</a>
-</h1>
-
 <p align="center"> 
    <img src="https://raw.githubusercontent.com/FunkyMuse/foSho/main/foSho.png"/> 
 </p>
