@@ -7,4 +7,5 @@ dependencies {
     implementation(libs.ksp.symbol.processing.api)
     implementation(libs.squareup.kotlinpoet)
     implementation(libs.compose.runtime)
+    testImplementation(libs.bundles.processor.unit.tests)
 }

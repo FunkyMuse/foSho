@@ -61,7 +61,6 @@ internal class NavigationProcessor(
         if (isSingleModule) {
             val navRequestSymbol = singleModuleNavRequestSymbolResolver(resolver = resolver)
             singleModuleGraphsResolver(resolver)
-
             navRequestSymbol.filterNot { declaration -> declaration.validate() }.toList()
         } else {
             val navRequestSymbol = multiModuleNavRequestSymbolResolver(

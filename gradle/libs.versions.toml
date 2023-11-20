@@ -26,6 +26,9 @@ compose = "1.6.0-beta01"
 composeCompiler = "1.5.4"
 composeMaterial3 = "1.2.0-alpha11"
 accompanist = "0.33.2-alpha"
+#test
+junit = "4.13.2"
+ksp-compile-test = "1.5.0"
 #Gradle
 gradlePlugins-agp = "8.1.4"
 gradlePlugins-maven-publish = "maven-publish"
@@ -87,6 +90,11 @@ hilt-hiltNavigationCompose = { module = "androidx.hilt:hilt-navigation-compose",
 hilt-work-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "hilt-work" }
 #Accompanist
 accompanist-navigationMaterial = { module = "com.google.accompanist:accompanist-navigation-material", version.ref = "accompanist" }
+#Unit tests
+junit = { module = "junit:junit", version.ref = "junit" }
+kotlin-junit-test = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
+kotlin-compile-test = { module = "com.github.tschuchortdev:kotlin-compile-testing", version.ref = "ksp-compile-test" }
+ksp-compile-test = { module = "com.github.tschuchortdev:kotlin-compile-testing-ksp", version.ref = "ksp-compile-test" }
 [bundles]
 compose = [
     "compose-activity",
@@ -118,6 +126,12 @@ hilt = [
 ]
 hilt-ksp = [
     "hilt-compiler",
+]
+processor-unit-tests = [
+    "junit",
+    "kotlin-junit-test",
+    "kotlin-compile-test",
+    "ksp-compile-test",
 ]
 [plugins]
 android = { id = "com.android.application", version.ref = "gradlePlugins-agp" }
