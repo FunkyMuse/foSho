@@ -43,7 +43,7 @@ app-build-kotlinJVMTarget = "17"
 app-version-groupId = "dev.funkymuse.fosho"
 app-version-appId = "dev.funkymuse.fosho.sample"
 app-version-versionCode = "1"
-app-version-versionName = "0.0.2"
+app-version-versionName = "0.0.3"
 
 
 [libraries]

@@ -14,6 +14,6 @@ class NavigationProcessorProvider : SymbolProcessorProvider {
             codeGenerator = environment.codeGenerator,
             isSingleModule = environment.options["${Constants.foSho}.${Constants.singleModule}"]?.toBooleanStrict() ?: false,
             injectViewModelArguments = environment.options["${Constants.foSho}.${Constants.injectViewModelArguments}"]?.toBooleanStrict()
-                ?: false
+                ?: false //todo figure out how to make it work in multi module project
         )
 }

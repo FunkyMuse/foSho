@@ -100,7 +100,7 @@ internal class MultiModuleGraphImplementationGenerator(
         TypeSpec
             .objectBuilder(graphClassName(declaration))
             .addKdoc(generatedFromDocs(declaration))
-            .addSuperinterface(ClassName.bestGuess(declaration.simpleName.asString() + "Stub"))
+            .addSuperinterface(ClassName.bestGuess(declaration.simpleName.asString()))
             .addProperty(
                 PropertySpec.builder(
                     name = Constants.screens,
