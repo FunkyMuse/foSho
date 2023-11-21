@@ -87,6 +87,8 @@ ksp {
 <details open>
   <summary>Single module</summary>
 
+Inside the `:app` module make sure to add the KSP argument, the library is multi module by default.
+
 ```kotlin
 ksp {
     arg("foSho.singleModule", "true")
