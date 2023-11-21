@@ -22,7 +22,7 @@ A KSP library that helps you generate type safe code with minimal effort and pro
 - Graph aggregator factory
 - Custom navigator to open screens easily
 - Global navigation
-- Multi and single module support
+- Multi (out of the box) and single module support
 
 Everything you can do with the Official Jetpack Compose Navigation but in a type safe way.
 
@@ -103,7 +103,7 @@ There are three things you need to write code for and it's pretty natural
 3. Content
 
 - `Graph`: Starting point is a `@Graph`, each `Graph` has a `startingDestination` and other `destinations`, also a `Graph` can be a `rootGraph` (only one throughout your app).
-- `Destination`: every destination that's part of `startingDestination` and `destinations` is marked with `@Destination` and you implement one of the three UI types `Screen`, `Dialog` and `BottomSheet` for each one you can additionally control whether to generate view model arguments or nav stack entry arguments, `val generateViewModelArguments: Boolean = false`,
+- `Destination`: every destination that's part of `startingDestination` and `destinations` is marked with `@Destination` and you implement one of the three UI types `Screen`, `Dialog` for which you can control the [properties](https://developer.android.com/reference/kotlin/androidx/compose/ui/window/DialogProperties#DialogProperties(kotlin.Boolean,kotlin.Boolean,androidx.compose.ui.window.SecureFlagPolicy,kotlin.Boolean,kotlin.Boolean)) and `BottomSheet` for each one you can additionally control whether to generate view model arguments or nav stack entry arguments, `val generateViewModelArguments: Boolean = false`,
   `val generateScreenEntryArguments: Boolean = false`, you can annotate a destination with `@Argument` and `@CallbackArgument` in order to control to/from arguments.
 - `Content`: everytime you click build a `Destination` implementation is generated for you, it's your responsibility to implement it and annotate that object with a `@Content`
 In code this will look like this
@@ -178,8 +178,71 @@ A `Navigator` is there for you to collect the navigation events and also to send
 <details open>
   <summary>Multi module</summary>
 
+You would need to create one umbrella module, usually named "navigator" or however you see fit where you would write the code
+for the Graphs
+
+```kotlin
+//:navigator module
+//UserAccountGraph.kt
+@Graph(
+  startingDestination = UserAccountDetails::class,
+  destinations = [
+    EditAccountDetails::class,
+    DeleteAccount::class,
+    ChangePassword::class,
+  ]
+)
+internal object UserAccountGraph
+
+@Destination
+internal object UserAccountDetails : Screen
+
+@Destination
+internal object ChangePassword : BottomSheet
+
+@Destination
+internal object DeleteAccount : Dialog
+
+@Destination(generateScreenEntryArguments = true)
+@Argument(name = "email", argumentType = ArgumentType.STRING)
+@CallbackArgument(name = "isAccountUpdated", argumentType = ArgumentType.BOOLEAN)
+internal object EditAccountDetails : Screen
+
+//HomeGraph.kt
+@Graph(startingDestination = Home::class, rootGraph = true)
+internal object HomeGraph
+
+@Destination
+@Argument(name = "hideBottomNav", argumentType = ArgumentType.BOOLEAN, defaultValue = DefaultBooleanValueFalse::class)
+internal object Home : Screen
+```
+
+Your `:navigator` module acts as the only point where you have the navigation codegen code and nothing else, here you can control the `arg` whether to generate injectable view model arguments through 
+```kotlin
+ksp {
+    arg("foSho.injectViewModelArguments", "true")
+}
+```
+
+Then inside your feature module
+
+```kotlin
+// :feature:user_details
+@Content
+internal object UserAccountDetailsContent : UserAccountDetailsDestination {
+    @Composable
+    override fun AnimatedContentScope.Content() {
+        
+    }
+}
+```
+and also make sure to add the `:feature:user_details` in your `:app` module so that it can be aggregated into the `GraphFactory`.
 
 </details>
+
+- `Screen` has [AnimatedContentScope](https://developer.android.com/reference/kotlin/androidx/compose/animation/AnimatedContentScope) as a receiver
+- `Dialog` doesn't have any receiver
+- `BottomSheet` has a [ColumnScope](https://developer.android.com/reference/kotlin/androidx/compose/foundation/layout/ColumnScope) as a receiver
 
 #### Important for Kotlin < 1.8.0
 
