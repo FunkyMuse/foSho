@@ -1,11 +1,14 @@
 package dev.funkymuse.fosho.navigator.android
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberUpdatedState
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.NavHostController
 import dev.funkymuse.fosho.navigator.android.wrapped.currentEntry
@@ -44,7 +47,8 @@ fun <T> CallbackArguments.OnSingleCallbackArgument(
     onValue: (T?) -> Unit
 ) {
     val currentEntryHandle = navHostController.currentEntry.savedStateHandle
-    val value by currentEntryHandle.getStateFlow(key, initialValue).collectAsState(initial = initialValue)
+    val value by currentEntryHandle.getStateFlow(key, initialValue)
+        .collectAsState(initial = initialValue)
     val currentOnValue by rememberUpdatedState(newValue = onValue)
     LaunchedEffect(value) {
         currentOnValue(value)
@@ -55,12 +59,38 @@ fun <T> CallbackArguments.OnSingleCallbackArgument(
 }
 
 @Composable
+fun <T> CallbackArguments.OnSingleCallbackArgument(
+    key: String,
+    onValue: (T) -> Unit
+) {
+    val currentEntry = navHostController.currentEntry
+    val currentOnValue by rememberUpdatedState(newValue = onValue)
+    DisposableEffect(currentEntry) {
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_RESUME && currentEntry.savedStateHandle.contains(key)) {
+                val result = currentEntry.savedStateHandle.remove<T>(key)!!
+                currentOnValue(result)
+            }
+        }
+        currentEntry.lifecycle.addObserver(observer)
+        onDispose {
+            currentEntry.lifecycle.removeObserver(observer)
+        }
+    }
+}
+
+@Composable
 fun CallbackArguments.OnSingleBooleanCallbackArgument(
     key: String,
     initialValue: Boolean? = null,
     consumeWhen: (Boolean?) -> Boolean = { it != null },
     onValue: (Boolean?) -> Unit,
-) = OnSingleCallbackArgument(key = key, initialValue = initialValue, onValue = onValue, consumeWhen = consumeWhen)
+) = OnSingleCallbackArgument(
+    key = key,
+    initialValue = initialValue,
+    onValue = onValue,
+    consumeWhen = consumeWhen
+)
 
 @Composable
 fun CallbackArguments.OnSingleIntCallbackArgument(
@@ -68,7 +98,12 @@ fun CallbackArguments.OnSingleIntCallbackArgument(
     initialValue: Int? = null,
     consumeWhen: (Int?) -> Boolean = { it != null },
     onValue: (Int?) -> Unit,
-) = OnSingleCallbackArgument(key = key, initialValue = initialValue, onValue = onValue, consumeWhen = consumeWhen)
+) = OnSingleCallbackArgument(
+    key = key,
+    initialValue = initialValue,
+    onValue = onValue,
+    consumeWhen = consumeWhen
+)
 
 @Composable
 fun CallbackArguments.OnSingleStringCallbackArgument(
@@ -76,7 +111,12 @@ fun CallbackArguments.OnSingleStringCallbackArgument(
     initialValue: String? = null,
     consumeWhen: (String?) -> Boolean = { it != null },
     onValue: (String?) -> Unit,
-) = OnSingleCallbackArgument(key = key, initialValue = initialValue, onValue = onValue, consumeWhen = consumeWhen)
+) = OnSingleCallbackArgument(
+    key = key,
+    initialValue = initialValue,
+    onValue = onValue,
+    consumeWhen = consumeWhen
+)
 
 @Composable
 fun CallbackArguments.OnSingleDoubleCallbackArgument(
@@ -84,4 +124,9 @@ fun CallbackArguments.OnSingleDoubleCallbackArgument(
     initialValue: Double? = null,
     consumeWhen: (Double?) -> Boolean = { it != null },
     onValue: (Double?) -> Unit,
-) = OnSingleCallbackArgument(key = key, initialValue = initialValue, onValue = onValue, consumeWhen = consumeWhen)
+) = OnSingleCallbackArgument(
+    key = key,
+    initialValue = initialValue,
+    onValue = onValue,
+    consumeWhen = consumeWhen
+)
