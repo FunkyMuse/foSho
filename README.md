@@ -104,6 +104,8 @@ There are three things you need to write code for and it's pretty natural
 2. Destination (Argument, Callback Argument)
 3. Content
 
+All you need to do is click build or just run `./gradlew kspDebugKotlin` as a faster way to get the generated code.
+
 - `Graph`: Starting point is a `@Graph`, each `Graph` has a `startingDestination` and other `destinations`, also a `Graph` can be a `rootGraph` (only one throughout your app).
 - `Destination`: every destination that's part of `startingDestination` and `destinations` is marked with `@Destination` and you implement one of the three UI types `Screen`, `Dialog` for which you can control the [properties](https://developer.android.com/reference/kotlin/androidx/compose/ui/window/DialogProperties#DialogProperties(kotlin.Boolean,kotlin.Boolean,androidx.compose.ui.window.SecureFlagPolicy,kotlin.Boolean,kotlin.Boolean)) and `BottomSheet` for each one you can additionally control whether to generate view model arguments or nav stack entry arguments, `val generateViewModelArguments: Boolean = false`,
   `val generateScreenEntryArguments: Boolean = false`, you can annotate a destination with `@Argument` and `@CallbackArgument` in order to control to/from arguments.
