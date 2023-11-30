@@ -21,9 +21,9 @@ androidx-navigation = "2.7.5"
 androidx-splashscreen = "1.0.1"
 #Compose
 composeActivity = "1.8.1"
-compose = "1.6.0-beta01"
-composeCompiler = "1.5.4"
-composeMaterial3 = "1.2.0-alpha11"
+compose = "1.6.0-beta02"
+composeCompiler = "1.5.5"
+composeMaterial3 = "1.2.0-alpha12"
 accompanist = "0.33.2-alpha"
 #test
 junit = "4.13.2"
