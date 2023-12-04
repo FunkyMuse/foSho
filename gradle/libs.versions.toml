@@ -8,7 +8,7 @@ dokka = "1.9.10"
 ksp = "1.9.20-1.0.14"
 square-kotlinpoet-ksp = "1.15.2"
 #Dagger/Hilt
-hilt = "2.48.1"
+hilt = "2.49"
 hilt-work = "1.1.0"
 hiltNavigationCompose = "1.1.0"
 #AndroidX
