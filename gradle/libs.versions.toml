@@ -1,11 +1,11 @@
 [versions]
 #Jetbrains
 kotlin-immutable-collections = "0.3.6"
-kotlin = "1.9.20"
+kotlin = "1.9.21"
 coroutines = "1.7.3"
 dokka = "1.9.10"
 #KSP
-ksp = "1.9.20-1.0.14"
+ksp = "1.9.21-1.0.15"
 square-kotlinpoet-ksp = "1.15.3"
 #Dagger/Hilt
 hilt = "2.49"
@@ -22,14 +22,14 @@ androidx-splashscreen = "1.0.1"
 #Compose
 composeActivity = "1.8.1"
 compose = "1.6.0-beta02"
-composeCompiler = "1.5.5"
+composeCompiler = "1.5.6"
 composeMaterial3 = "1.2.0-alpha12"
 accompanist = "0.33.2-alpha"
 #test
 junit = "4.13.2"
 ksp-compile-test = "1.5.0"
 #Gradle
-gradlePlugins-agp = "8.1.4"
+gradlePlugins-agp = "8.2.0"
 gradlePlugins-maven-publish = "maven-publish"
 #build
 app-build-javaVersion = "VERSION_17"
@@ -42,7 +42,7 @@ app-build-kotlinJVMTarget = "17"
 app-version-groupId = "dev.funkymuse.fosho"
 app-version-appId = "dev.funkymuse.fosho.sample"
 app-version-versionCode = "1"
-app-version-versionName = "0.0.5"
+app-version-versionName = "0.0.6"
 
 
 [libraries]
