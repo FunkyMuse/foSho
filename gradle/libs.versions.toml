@@ -6,7 +6,7 @@ coroutines = "1.7.3"
 dokka = "1.9.10"
 #KSP
 ksp = "1.9.22-1.0.16"
-square-kotlinpoet-ksp = "1.15.3"
+square-kotlinpoet-ksp = "1.16.0"
 #Dagger/Hilt
 hilt = "2.50"
 hilt-work = "1.1.0"
