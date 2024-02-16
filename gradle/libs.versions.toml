@@ -2,7 +2,7 @@
 #Jetbrains
 kotlin-immutable-collections = "0.3.7"
 kotlin = "1.9.22"
-coroutines = "1.7.3"
+coroutines = "1.8.0"
 dokka = "1.9.10"
 #KSP
 ksp = "1.9.22-1.0.17"
