@@ -22,7 +22,7 @@ androidx-splashscreen = "1.0.1"
 #Compose
 composeActivity = "1.8.2"
 compose = "1.7.0-alpha02"
-composeCompiler = "1.5.8"
+composeCompiler = "1.5.9"
 composeMaterial3 = "1.2.0"
 accompanist = "0.34.0"
 #test
