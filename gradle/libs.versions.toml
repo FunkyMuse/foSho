@@ -9,7 +9,7 @@ ksp = "1.9.22-1.0.17"
 square-kotlinpoet-ksp = "1.16.0"
 #Dagger/Hilt
 hilt = "2.50"
-hilt-work = "1.1.0"
+hilt-work = "1.2.0"
 hiltNavigationCompose = "1.2.0"
 #AndroidX
 androidx-appCompat = "1.7.0-alpha03"
