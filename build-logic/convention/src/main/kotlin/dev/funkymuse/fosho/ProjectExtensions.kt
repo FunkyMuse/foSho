@@ -11,7 +11,7 @@ import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-fun CommonExtension<*, *, *, *, *>.configureBuildFeatures() {
+fun CommonExtension<*, *, *, *, *, *>.configureBuildFeatures() {
     buildFeatures.apply {
         resValues = false
         shaders = false
@@ -51,7 +51,7 @@ fun Project.configureKotlinOptions() {
     }
 }
 
-fun Project.configureJavaCompatibilityCompileOptions(commonExtensions: CommonExtension<*, *, *, *, *>) {
+fun Project.configureJavaCompatibilityCompileOptions(commonExtensions: CommonExtension<*, *, *, *, *, *>) {
     commonExtensions.compileOptions {
         val currentJavaVersionFromLibs = JavaVersion.valueOf(
             versionCatalog.findVersion("app-build-javaVersion").get().toString()
