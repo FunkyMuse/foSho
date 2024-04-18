@@ -20,7 +20,7 @@ androidx-lifecycle = "2.7.0"
 androidx-navigation = "2.7.7"
 androidx-splashscreen = "1.0.1"
 #Compose
-composeActivity = "1.8.2"
+composeActivity = "1.9.0"
 compose = "1.7.0-alpha06"
 composeCompiler = "1.5.11"
 composeMaterial3 = "1.2.1"
