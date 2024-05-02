@@ -12,7 +12,7 @@ hilt = "2.51.1"
 hilt-work = "1.2.0"
 hiltNavigationCompose = "1.2.0"
 #AndroidX
-androidx-appCompat = "1.7.0-alpha03"
+androidx-appCompat = "1.7.0-beta01"
 androidx-core-ktx = "1.13.1"
 androidx-customView = "1.2.0-alpha02"
 androidx-customViewPooling = "1.0.0"
