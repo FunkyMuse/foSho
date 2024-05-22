@@ -9,7 +9,9 @@ import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.gradle.utils.named
 
 fun CommonExtension<*, *, *, *, *, *>.configureBuildFeatures() {
     buildFeatures.apply {
@@ -31,24 +33,28 @@ fun LibraryExtension.addLibrariesConfig() {
 
 
 fun Project.configureKotlinOptions() {
-    tasks.withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = versionCatalog.getVersion("app-build-kotlinJVMTarget")
-        kotlinOptions.freeCompilerArgs = listOf(
-            "-opt-in=kotlin.RequiresOptIn",
-            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
-            "-opt-in=kotlinx.coroutines.FlowPreview",
-            "-opt-in=androidx.compose.ui.text.ExperimentalTextApi",
-            "-opt-in=com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi",
-            "-opt-in=androidx.compose.animation.ExperimentalAnimationApi",
-            "-opt-in=androidx.compose.ui.ExperimentalComposeUiApi",
-            "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
-            "-opt-in=androidx.compose.material.ExperimentalMaterialApi",
-            "-opt-in=androidx.compose.foundation.ExperimentalFoundationApi",
-            "-opt-in=androidx.compose.foundation.layout.ExperimentalLayoutApi",
-            "-opt-in=com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi",
-            "-Xcontext-receivers"
-        )
-    }
+    tasks
+        .withType<org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile>().configureEach {
+            compilerOptions {
+                freeCompilerArgs.addAll(
+                    listOf(
+                        "-opt-in=kotlin.RequiresOptIn",
+                        "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+                        "-opt-in=kotlinx.coroutines.FlowPreview",
+                        "-opt-in=androidx.compose.ui.text.ExperimentalTextApi",
+                        "-opt-in=com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi",
+                        "-opt-in=androidx.compose.animation.ExperimentalAnimationApi",
+                        "-opt-in=androidx.compose.ui.ExperimentalComposeUiApi",
+                        "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
+                        "-opt-in=androidx.compose.material.ExperimentalMaterialApi",
+                        "-opt-in=androidx.compose.foundation.ExperimentalFoundationApi",
+                        "-opt-in=androidx.compose.foundation.layout.ExperimentalLayoutApi",
+                        "-opt-in=com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi",
+                        "-Xcontext-receivers"
+                    )
+                )
+            }
+        }
 }
 
 fun Project.configureJavaCompatibilityCompileOptions(commonExtensions: CommonExtension<*, *, *, *, *, *>) {
@@ -74,7 +80,8 @@ fun Project.configureAppPluginPackageAndNameSpace(
 
 fun Project.configureLibraryAndTestNameSpace() {
     configure<BaseExtension> {
-        namespace = versionCatalog.getVersion("app-version-groupId").plus(path.replace(":", ".").replace("-", "."))
+        namespace = versionCatalog.getVersion("app-version-groupId")
+            .plus(path.replace(":", ".").replace("-", "."))
     }
 }
 

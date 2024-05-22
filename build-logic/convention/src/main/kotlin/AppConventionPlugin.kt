@@ -19,14 +19,15 @@ class AppConventionPlugin : Plugin<Project> {
                 apply(versionCatalog.getPluginId("ksp"))
                 apply(versionCatalog.getPluginId("convention-hilt"))
                 apply(versionCatalog.getPluginId("convention-compose-app"))
+                apply(versionCatalog.getPluginId("compose-compiler"))
             }
-            configureKotlinOptions()
             extensions.configure<ApplicationExtension>{
                 commonVersioning(this)
                 configureAppPluginPackageAndNameSpace(this)
                 configureBuildFeatures()
                 configureJavaCompatibilityCompileOptions(this)
             }
+            configureKotlinOptions()
         }
     }
 }

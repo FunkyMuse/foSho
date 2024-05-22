@@ -21,11 +21,6 @@ internal fun Project.configureAndroidCompose(
             kotlinCompilerExtensionVersion = libs.getVersion("composeCompiler")
         }
 
-        tasks.withType<KotlinCompile> {
-            kotlinOptions {
-                freeCompilerArgs = freeCompilerArgs + buildComposeMetricsParameters()
-            }
-        }
         dependencies {
             add(implementation, libs.getBundle("compose"))
             add(implementation, libs.getLibrary("kotlin-immutable-collections"))
