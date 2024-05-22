@@ -1,11 +1,10 @@
 package dev.funkymuse.fosho
 
 import com.android.build.api.dsl.CommonExtension
-import java.io.File
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.withType
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.io.File
 
 /**
  * Configure Compose-specific options
@@ -17,9 +16,6 @@ internal fun Project.configureAndroidCompose(
     commonExtension.apply {
         buildFeatures.compose = true
 
-        composeOptions {
-            kotlinCompilerExtensionVersion = libs.getVersion("composeCompiler")
-        }
         tasks
             .withType<org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile>().configureEach {
                 compilerOptions {

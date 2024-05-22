@@ -63,7 +63,6 @@ coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-androi
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 #Compose
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "composeActivity" }
-compose-compiler = { module = "androidx.compose.compiler:compiler", version.ref = "composeCompiler" }
 compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "composeMaterial3" }
 compose-animation = { module = "androidx.compose.animation:animation", version.ref = "compose" }
@@ -98,7 +97,6 @@ ksp-compile-test = { module = "com.github.tschuchortdev:kotlin-compile-testing-k
 compose = [
     "compose-activity",
     "compose-animation",
-    "compose-compiler",
     "compose-foundation",
     "compose-runtime",
     "compose-ui",
