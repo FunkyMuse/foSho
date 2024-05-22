@@ -20,6 +20,12 @@ internal fun Project.configureAndroidCompose(
         composeOptions {
             kotlinCompilerExtensionVersion = libs.getVersion("composeCompiler")
         }
+        tasks
+            .withType<org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile>().configureEach {
+                compilerOptions {
+                    freeCompilerArgs.addAll(buildComposeMetricsParameters())
+                }
+            }
 
         dependencies {
             add(implementation, libs.getBundle("compose"))
