@@ -1,6 +1,6 @@
 [versions]
 #Jetbrains
-kotlin-immutable-collections = "0.3.7"
+kotlin-immutable-collections = "0.3.8"
 kotlin = "2.0.20"
 coroutines = "1.8.1"
 dokka = "1.9.20"
