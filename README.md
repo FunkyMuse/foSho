@@ -1,3 +1,4 @@
+## Successfully ran in two projects with over +1M installs, archived in favor of https://developer.android.com/guide/navigation/design/type-safety
 <p align="center"> 
    <img src="https://raw.githubusercontent.com/FunkyMuse/foSho/main/foSho.png"/> 
 </p>
